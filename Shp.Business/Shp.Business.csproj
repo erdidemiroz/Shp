@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Shp.DataAccess\Shp.DataAccess.csproj" />
+    <ProjectReference Include="..\Shp.Entities\Shp.Entities.csproj" />
+  </ItemGroup>
+
 </Project>

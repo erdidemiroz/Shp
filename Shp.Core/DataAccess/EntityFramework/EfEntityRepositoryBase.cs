@@ -11,6 +11,41 @@ namespace Shp.Core.DataAccess.EntityFramework
         where TEntity : class, IEntity, new() 
         where TContext : DbContext, new()
     {
+        public TEntity Add(TEntity entity)
+        {
+            using (var context = new TContext())
+            {
+                //var addedEntity = context.Add(entity);
+                var addedEntity = context.Entry(entity);
+                addedEntity.State = EntityState.Added;
+                context.SaveChanges();
+
+                return addedEntity.Entity;
+            }
+        }
+
+        public void Update(TEntity entity)
+        {
+            using (var context = new TContext())
+            {
+                //context.Update(entity);
+                var updatedEntity = context.Entry(entity);
+                updatedEntity.State = EntityState.Modified;
+                context.SaveChanges();
+            }
+        }
+
+        public void Delete(TEntity entity)
+        {
+            using (var context = new TContext())
+            {
+                //context.Remove(entity);
+                var deletedEntity = context.Entry(entity);
+                deletedEntity.State = EntityState.Deleted;
+                context.SaveChanges();
+            }
+        }
+
         public TEntity Get(Expression<Func<TEntity, bool>> filter)
         {
             using (var context = new TContext())
@@ -23,40 +58,7 @@ namespace Shp.Core.DataAccess.EntityFramework
         {
             using (var context = new TContext())
             {
-                return filter == null 
-                    ? context.Set<TEntity>().ToList() 
-                    : context.Set<TEntity>().Where(filter).ToList();
-            }
-        }
-
-        public TEntity Add(TEntity entity)
-        {
-            using (var context = new TContext())
-            {
-                var addedEntity = context.Entry(entity);
-                addedEntity.State = EntityState.Added;
-                context.SaveChanges();
-                return addedEntity.Entity;
-            }
-        }
-
-        public void Update(TEntity entity)
-        {
-            using (var context = new TContext())
-            {
-                var updatedEntity = context.Entry(entity);
-                updatedEntity.State = EntityState.Modified;
-                context.SaveChanges();
-            }
-        }
-
-        public void Delete(TEntity entity)
-        {
-            using (var context = new TContext())
-            {
-                var deletedEntity = context.Entry(entity);
-                deletedEntity.State = EntityState.Deleted;
-                context.SaveChanges();
+                return filter == null ? context.Set<TEntity>().ToList() : context.Set<TEntity>().Where(filter).ToList();
             }
         }
     }

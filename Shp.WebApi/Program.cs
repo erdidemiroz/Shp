@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Shp.Business.DependencyResolvers.AutoFac;
 
 namespace Shp.WebApi
 {
@@ -18,6 +15,11 @@ namespace Shp.WebApi
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .UseServiceProviderFactory(new AutofacServiceProviderFactory()) //determine of Autofac usage
+                .ConfigureContainer<ContainerBuilder>(builder =>
+                    {
+                        builder.RegisterModule(new AutofacBusinessModule()); //determine that usage which modules from Autofac 
+                    })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

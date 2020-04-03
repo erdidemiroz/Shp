@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
+using Shp.Core.Utilities.Results;
 using Shp.Entities.Concrete;
 
 namespace Shp.Business.Abstract
 {
     public interface IProductService
     {
-        IEnumerable<Product> GetProducts();
-        IEnumerable<Product> GetProductsByCategory(int categoryId);
-        Product AddProduct(Product product);
-        void DeleteProduct(Product product);
-        void UpdateProduct(Product product);
-        Product GetProductById(int productId);
+        IResult InsertProduct(Product product);
+        IResult UpdateProduct(Product product);
+        IResult DeleteProduct(Product product);
+        IDataResult<Product> GetAProduct(int productId);
+        IDataResult<IEnumerable<Product>> GetAllProducts();
+        IDataResult<IEnumerable<Product>> GetProductsByCategory(int categoryId);
     }
 }

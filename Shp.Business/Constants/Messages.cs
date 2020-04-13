@@ -3,8 +3,8 @@ namespace Shp.Business.Constants
 {
     public static class Messages<T>
     {
-        public static string EntityInserted = $"{typeof(T).Name} is inserted successfully.";
-        public static string EntityUpdated = $"{typeof(T).Name} is updated successfully.";
-        public static string EntityDeleted = $"{typeof(T).Name} is deleted successfully.";
+        public static string EntityInserted = $"{typeof(T).Name}'s inserted successfully.";
+        public static string EntityUpdated = $"{typeof(T).Name}'s updated successfully.";
+        public static string EntityDeleted = $"{typeof(T).Name}'s deleted successfully.";
     }
 }

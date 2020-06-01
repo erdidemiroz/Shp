@@ -24,8 +24,7 @@ namespace Shp.Business.Concrete
 
         public IResult InsertProduct(Product product)
         {
-            var insertedProduct = _productDal.Add(product);
-
+            _productDal.Add(product);
             return new SuccessResult(Messages<Product>.EntityInserted);
         } 
 
@@ -36,7 +35,6 @@ namespace Shp.Business.Concrete
         public IResult UpdateProduct(Product product)
         {
             _productDal.Update(product);
-
             return new SuccessResult(Messages<Product>.EntityUpdated);
         }
 
@@ -47,7 +45,6 @@ namespace Shp.Business.Concrete
         public IResult DeleteProduct(Product product)
         {
             _productDal.Delete(product);
-
             return new SuccessResult(Messages<Product>.EntityDeleted);
         } 
 

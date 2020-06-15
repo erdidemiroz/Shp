@@ -7,7 +7,7 @@ using Shp.Entities.Concrete;
 
 namespace Shp.Business.Concrete
 {
-    public class CategoryManager : ICategoryService
+    public sealed class CategoryManager : ICategoryService
     {
         #region ctor
 

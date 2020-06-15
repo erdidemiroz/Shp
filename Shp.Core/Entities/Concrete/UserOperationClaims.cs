@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
-using Shp.Core.Entities;
 
-namespace Shp.Entities.Concrete
+namespace Shp.Core.Entities.Concrete
 {
     public class UserOperationClaims : IEntity
     {

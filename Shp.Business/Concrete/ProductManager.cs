@@ -7,7 +7,7 @@ using Shp.Entities.Concrete;
 
 namespace Shp.Business.Concrete
 {
-    public class ProductManager : IProductService
+    public sealed class ProductManager : IProductService
     {
         #region ctor
 

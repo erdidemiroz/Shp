@@ -19,7 +19,6 @@ namespace Shp.Core.DataAccess.EntityFramework
                 var addedEntity = context.Entry(entity);
                 addedEntity.State = EntityState.Added;
                 context.SaveChanges();
-
                 return addedEntity.Entity;
             }
         }

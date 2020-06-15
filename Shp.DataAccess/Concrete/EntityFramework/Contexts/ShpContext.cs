@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Shp.Core.Entities.Concrete;
 using Shp.Entities.Concrete;
 
 namespace Shp.DataAccess.Concrete.EntityFramework.Contexts

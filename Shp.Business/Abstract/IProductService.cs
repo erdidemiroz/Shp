@@ -6,7 +6,7 @@ namespace Shp.Business.Abstract
 {
     public interface IProductService
     {
-        IResult InsertProduct(Product product);
+        IResult AddProduct(Product product);
         IResult UpdateProduct(Product product);
         IResult DeleteProduct(Product product);
         IDataResult<Product> GetAProduct(int productId);

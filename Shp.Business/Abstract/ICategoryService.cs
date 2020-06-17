@@ -6,7 +6,7 @@ namespace Shp.Business.Abstract
 {
     public interface ICategoryService
     {
-        IResult InsertCategory(Category category);
+        IResult AddCategory(Category category);
         IResult UpdateCategory(Category category);
         IResult DeleteCategory(Category category);
         IDataResult<Category> GetACategory(int categoryId);

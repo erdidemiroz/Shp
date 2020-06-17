@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Shp.Business.Abstract;
 using Shp.Entities.Concrete;
 
@@ -19,12 +20,12 @@ namespace Shp.WebApi.Controllers
 
         #endregion
 
-        #region InsertProduct
+        #region AddProduct
 
         [HttpPost]
-        public IActionResult InsertProduct(Product product)
+        public IActionResult AddProduct(Product product)
         {
-            var result = _productService.InsertProduct(product);
+            var result = _productService.AddProduct(product);
             if (result.Success) return Ok(result.Message);
 
             return BadRequest(result.Message);
@@ -70,6 +71,7 @@ namespace Shp.WebApi.Controllers
         }
 
         [HttpGet("getAll")]
+        [Authorize(Roles = "Product.List")]
         public IActionResult GetAllProducts()
         {
             var result = _productService.GetAllProducts();

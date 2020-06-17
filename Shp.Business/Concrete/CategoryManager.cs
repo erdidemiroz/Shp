@@ -21,9 +21,9 @@ namespace Shp.Business.Concrete
 
         #endregion
 
-        #region InsertProduct
+        #region AddCategory
 
-        public IResult InsertCategory(Category category)
+        public IResult AddCategory(Category category)
         {
             _categoryDal.Add(category);
             return new SuccessResult(Messages<Category>.EntityInserted);
@@ -31,7 +31,7 @@ namespace Shp.Business.Concrete
 
         #endregion
 
-        #region UpdateProduct
+        #region UpdateCategory
 
         public IResult UpdateCategory(Category category)
         {
@@ -41,7 +41,7 @@ namespace Shp.Business.Concrete
 
         #endregion
 
-        #region DeleteProduct
+        #region DeleteCategory
 
         public IResult DeleteCategory(Category category)
         {

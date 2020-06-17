@@ -20,9 +20,9 @@ namespace Shp.Business.Concrete
 
         #endregion
 
-        #region InsertProduct
+        #region AddProduct
 
-        public IResult InsertProduct(Product product)
+        public IResult AddProduct(Product product)
         {
             _productDal.Add(product);
             return new SuccessResult(Messages<Product>.EntityInserted);

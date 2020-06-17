@@ -3,7 +3,7 @@ using Shp.Business.Abstract;
 using Shp.Business.Constants;
 using Shp.Core.Entities.Concrete;
 using Shp.Core.Utilities.Results;
-using Shp.DataAccess.Concrete.EntityFramework;
+using Shp.DataAccess.Abstract;
 
 namespace Shp.Business.Concrete
 {
@@ -12,18 +12,18 @@ namespace Shp.Business.Concrete
 
         #region ctor
 
-        private EfUserDal _efUserDal;
+        private IUserDal _efUserDal;
 
-        public UserManager(EfUserDal efUserDal)
+        public UserManager(IUserDal efUserDal)
         {
             _efUserDal = efUserDal;
         }
 
         #endregion
 
-        #region InsertUser
+        #region AddUser
 
-        public IResult InsertUser(User user)
+        public IResult AddUser(User user)
         {
             _efUserDal.Add(user);
             return new SuccessResult(Messages<User>.EntityInserted);

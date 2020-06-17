@@ -1,5 +1,4 @@
-﻿using System;
-using Shp.Business.Abstract;
+﻿using Shp.Business.Abstract;
 using Shp.Business.Constants.User;
 using Shp.Core.Entities.Concrete;
 using Shp.Core.Utilities.Results;
@@ -26,9 +25,21 @@ namespace Shp.Business.Concrete
 
         #region Register
 
-        public IDataResult<User> Register(UserRegisterDto userRegisterDto, string password)
+        public IDataResult<User> Register(UserRegisterDto userRegisterDto)
         {
-            throw new NotImplementedException();
+            byte[] passwordHash, passwordSalt;
+            HashingHelper.CreatePasswordHash(userRegisterDto.Password, out passwordHash, out passwordSalt);
+            var user = new User
+            {
+                Email = userRegisterDto.Email,
+                FirstName = userRegisterDto.FirstName,
+                LastName = userRegisterDto.LastName,
+                PasswordHash = passwordHash,
+                PasswordSAlt = passwordSalt,
+                Status = false
+            };
+            _userService.AddUser(user);
+            return new SuccessDataResult<User>(user, UserMessages.UserRegistered);
         }
 
         #endregion
@@ -40,7 +51,7 @@ namespace Shp.Business.Concrete
             var user = _userService.GetUserByEmail(userLoginDto.Email);
             if (user == null) 
                 return new ErrorDataResult<User>(UserMessages.UserNotFound);
-            if (!HashingHelper.VerifyPasswordHash(userLoginDto.Password, user.PasswordHash))
+            if (!HashingHelper.VerifyPasswordHash(userLoginDto.Password, user.PasswordHash, user.PasswordSAlt))
                 return new ErrorDataResult<User>(UserMessages.PasswordError);
             return new SuccessDataResult<User>(user, UserMessages.SuccesfulLogin);
         }
@@ -59,9 +70,12 @@ namespace Shp.Business.Concrete
         #endregion
 
         #region CreateAccessToken
+
         public IDataResult<AccessToken> CreateAccessToken(User user)
         {
-            throw new NotImplementedException();
+            var claims = _userService.GetClaims(user);
+            var accessToken = _tokenHelper.CreateToken(user, claims);
+            return new SuccessDataResult<AccessToken>(accessToken, UserMessages.AccessTokenCreated);
         }
 
         #endregion

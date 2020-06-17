@@ -6,7 +6,7 @@ namespace Shp.Business.Abstract
 {
     public interface IUserService
     {
-        IResult AddUser(User user);
+        IResult Add(User user);
         User GetUserByEmail(string email);
         IEnumerable<OperationClaims> GetClaims(User user);
     }

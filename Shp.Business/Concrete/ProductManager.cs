@@ -20,9 +20,9 @@ namespace Shp.Business.Concrete
 
         #endregion
 
-        #region AddProduct
+        #region Add
 
-        public IResult AddProduct(Product product)
+        public IResult Add(Product product)
         {
             _productDal.Add(product);
             return new SuccessResult(Messages<Product>.EntityInserted);
@@ -30,9 +30,9 @@ namespace Shp.Business.Concrete
 
         #endregion
 
-        #region UpdateProduct
+        #region Update
 
-        public IResult UpdateProduct(Product product)
+        public IResult Update(Product product)
         {
             _productDal.Update(product);
             return new SuccessResult(Messages<Product>.EntityUpdated);
@@ -40,9 +40,9 @@ namespace Shp.Business.Concrete
 
         #endregion
 
-        #region DeleteProduct
+        #region Delete
 
-        public IResult DeleteProduct(Product product)
+        public IResult Delete(Product product)
         {
             _productDal.Delete(product);
             return new SuccessResult(Messages<Product>.EntityDeleted);
@@ -53,9 +53,9 @@ namespace Shp.Business.Concrete
 
         #region GetProduct
 
-        public IDataResult<Product> GetAProduct(int productId) => new SuccessDataResult<Product>(_productDal.Get(x => x.Id == productId));
+        public IDataResult<Product> Get(int productId) => new SuccessDataResult<Product>(_productDal.Get(x => x.Id == productId));
 
-        public IDataResult<IEnumerable<Product>> GetAllProducts() => new SuccessDataResult<IEnumerable<Product>>(_productDal.GetList());
+        public IDataResult<IEnumerable<Product>> GetAll() => new SuccessDataResult<IEnumerable<Product>>(_productDal.GetList());
 
         public IDataResult<IEnumerable<Product>> GetProductsByCategory(int categoryId) => new SuccessDataResult<IEnumerable<Product>>(_productDal.GetList(x => x.CategoryId == categoryId));
 

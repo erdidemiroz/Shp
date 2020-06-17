@@ -21,9 +21,9 @@ namespace Shp.Business.Concrete
 
         #endregion
 
-        #region AddCategory
+        #region Add
 
-        public IResult AddCategory(Category category)
+        public IResult Add(Category category)
         {
             _categoryDal.Add(category);
             return new SuccessResult(Messages<Category>.EntityInserted);
@@ -31,9 +31,9 @@ namespace Shp.Business.Concrete
 
         #endregion
 
-        #region UpdateCategory
+        #region Update
 
-        public IResult UpdateCategory(Category category)
+        public IResult Update(Category category)
         {
             _categoryDal.Update(category);
             return new SuccessResult(Messages<Category>.EntityUpdated);
@@ -41,9 +41,9 @@ namespace Shp.Business.Concrete
 
         #endregion
 
-        #region DeleteCategory
+        #region Delete
 
-        public IResult DeleteCategory(Category category)
+        public IResult Delete(Category category)
         {
             _categoryDal.Delete(category);
             return new SuccessResult(Messages<Category>.EntityDeleted);
@@ -54,9 +54,9 @@ namespace Shp.Business.Concrete
 
         #region GetCategory
 
-        public IDataResult<Category> GetACategory(int categoryId) => new SuccessDataResult<Category>(_categoryDal.Get(x => x.Id == categoryId));
+        public IDataResult<Category> Get(int categoryId) => new SuccessDataResult<Category>(_categoryDal.Get(x => x.Id == categoryId));
 
-        public IDataResult<IEnumerable<Category>> GetAllCategories() => new SuccessDataResult<IEnumerable<Category>>(_categoryDal.GetList());
+        public IDataResult<IEnumerable<Category>> GetAll() => new SuccessDataResult<IEnumerable<Category>>(_categoryDal.GetList());
 
         #endregion
     }

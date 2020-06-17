@@ -38,7 +38,7 @@ namespace Shp.Business.Concrete
                 PasswordSAlt = passwordSalt,
                 Status = false
             };
-            _userService.AddUser(user);
+            _userService.Add(user);
             return new SuccessDataResult<User>(user, UserMessages.UserRegistered);
         }
 

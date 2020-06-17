@@ -24,7 +24,7 @@ namespace Shp.WebApi.Controllers
         [HttpGet("getAll")]
         public IActionResult GetAllCategories()
         {
-            var result = _categoryService.GetAllCategories();
+            var result = _categoryService.GetAll();
             if (result.Success) return Ok(result.Data);
 
             return BadRequest(result.Message);

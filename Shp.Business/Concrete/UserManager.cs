@@ -21,9 +21,9 @@ namespace Shp.Business.Concrete
 
         #endregion
 
-        #region AddUser
+        #region Add
 
-        public IResult AddUser(User user)
+        public IResult Add(User user)
         {
             _efUserDal.Add(user);
             return new SuccessResult(Messages<User>.EntityInserted);

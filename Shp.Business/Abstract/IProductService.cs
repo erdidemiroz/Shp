@@ -6,11 +6,11 @@ namespace Shp.Business.Abstract
 {
     public interface IProductService
     {
-        IResult AddProduct(Product product);
-        IResult UpdateProduct(Product product);
-        IResult DeleteProduct(Product product);
-        IDataResult<Product> GetAProduct(int productId);
-        IDataResult<IEnumerable<Product>> GetAllProducts();
+        IResult Add(Product product);
+        IResult Update(Product product);
+        IResult Delete(Product product);
+        IDataResult<Product> Get(int productId);
+        IDataResult<IEnumerable<Product>> GetAll();
         IDataResult<IEnumerable<Product>> GetProductsByCategory(int categoryId);
     }
 }

@@ -6,10 +6,10 @@ namespace Shp.Business.Abstract
 {
     public interface ICategoryService
     {
-        IResult AddCategory(Category category);
-        IResult UpdateCategory(Category category);
-        IResult DeleteCategory(Category category);
-        IDataResult<Category> GetACategory(int categoryId);
-        IDataResult<IEnumerable<Category>> GetAllCategories();
+        IResult Add(Category category);
+        IResult Update(Category category);
+        IResult Delete(Category category);
+        IDataResult<Category> Get(int categoryId);
+        IDataResult<IEnumerable<Category>> GetAll();
     }
 }

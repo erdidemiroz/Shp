@@ -20,12 +20,12 @@ namespace Shp.WebApi.Controllers
 
         #endregion
 
-        #region AddProduct
+        #region Add
 
         [HttpPost]
         public IActionResult AddProduct(Product product)
         {
-            var result = _productService.AddProduct(product);
+            var result = _productService.Add(product);
             if (result.Success) return Ok(result.Message);
 
             return BadRequest(result.Message);
@@ -33,12 +33,12 @@ namespace Shp.WebApi.Controllers
 
         #endregion
 
-        #region UpdateProduct
+        #region Update
 
         [HttpPut]
         public IActionResult UpdateProduct(Product product)
         {
-            var result = _productService.UpdateProduct(product);
+            var result = _productService.Update(product);
             if (result.Success) return Ok(result.Message);
 
             return BadRequest(result.Message);
@@ -46,12 +46,12 @@ namespace Shp.WebApi.Controllers
 
         #endregion
 
-        #region DeleteProduct
+        #region Delete
 
         [HttpDelete]
         public IActionResult DeleteProduct(Product product)
         {
-            var result = _productService.DeleteProduct(product);
+            var result = _productService.Delete(product);
             if (result.Success) return Ok(result.Message);
 
             return BadRequest(result.Message);
@@ -64,7 +64,7 @@ namespace Shp.WebApi.Controllers
         [HttpGet("/{productId}")]
         public IActionResult GetAProduct(int productId)
         {
-            var result = _productService.GetAProduct(productId);
+            var result = _productService.Get(productId);
             if (result.Success) return Ok(result.Data);
 
             return BadRequest(result.Message);
@@ -74,7 +74,7 @@ namespace Shp.WebApi.Controllers
         [Authorize(Roles = "Product.List")]
         public IActionResult GetAllProducts()
         {
-            var result = _productService.GetAllProducts();
+            var result = _productService.GetAll();
             if (result.Success) return Ok(result.Data);
 
             return BadRequest(result.Message);

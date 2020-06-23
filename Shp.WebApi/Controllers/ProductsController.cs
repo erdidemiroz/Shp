@@ -26,8 +26,8 @@ namespace Shp.WebApi.Controllers
         public IActionResult AddProduct(Product product)
         {
             var result = _productService.Add(product);
-            if (result.Success) return Ok(result.Message);
-
+            if (result.Success) 
+                return Ok(result.Message);
             return BadRequest(result.Message);
         }
 

@@ -2,6 +2,7 @@
 using Shp.Business.Abstract;
 using Shp.Business.Constants;
 using Shp.Business.ValidationRules.FluentValidation;
+using Shp.Core.Aspects.Autofac.Transaction;
 using Shp.Core.Aspects.Autofac.Validation;
 using Shp.Core.CrossCutingConcerns.Validation;
 using Shp.Core.Utilities.Results;

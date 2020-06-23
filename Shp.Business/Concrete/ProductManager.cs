@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using Shp.Business.Abstract;
 using Shp.Business.Constants;
+using Shp.Business.ValidationRules.FluentValidation;
+using Shp.Core.Aspects.Autofac.Validation;
+using Shp.Core.CrossCutingConcerns.Validation;
 using Shp.Core.Utilities.Results;
 using Shp.DataAccess.Abstract;
 using Shp.Entities.Concrete;
@@ -22,8 +25,10 @@ namespace Shp.Business.Concrete
 
         #region Add
 
+        [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
+            ValidationTool.Validate(new ProductValidator(), product);
             _productDal.Add(product);
             return new SuccessResult(Messages<Product>.EntityInserted);
         } 

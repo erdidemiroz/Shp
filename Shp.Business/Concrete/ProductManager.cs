@@ -2,6 +2,7 @@
 using Shp.Business.Abstract;
 using Shp.Business.Constants;
 using Shp.Business.ValidationRules.FluentValidation;
+using Shp.Core.Aspects.Autofac.Caching;
 using Shp.Core.Aspects.Autofac.Transaction;
 using Shp.Core.Aspects.Autofac.Validation;
 using Shp.Core.CrossCutingConcerns.Validation;
@@ -27,6 +28,7 @@ namespace Shp.Business.Concrete
         #region Add
 
         [ValidationAspect(typeof(ProductValidator))]
+        [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
         {
             ValidationTool.Validate(new ProductValidator(), product);
@@ -63,6 +65,7 @@ namespace Shp.Business.Concrete
 
         public IDataResult<IEnumerable<Product>> GetAll() => new SuccessDataResult<IEnumerable<Product>>(_productDal.GetList());
 
+        [CacheAspect]
         public IDataResult<IEnumerable<Product>> GetProductsByCategory(int categoryId) => new SuccessDataResult<IEnumerable<Product>>(_productDal.GetList(x => x.CategoryId == categoryId));
 
         #endregion

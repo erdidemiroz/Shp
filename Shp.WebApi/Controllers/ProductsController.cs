@@ -80,7 +80,7 @@ namespace Shp.WebApi.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpGet("getProductsByCategory/{categoryId}")]
+        [HttpGet("getProductsByCategory{categoryId}")]
         public IActionResult GetProductsByCategory(int categoryId)
         {
             var result = _productService.GetProductsByCategory(categoryId);

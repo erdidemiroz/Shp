@@ -7,6 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Shp.Core.DependencyResolvers;
+using Shp.Core.Extensions;
+using Shp.Core.Utilities.IoC;
 using Shp.Core.Utilities.Security.Encryption;
 using Shp.Core.Utilities.Security.Jwt;
 
@@ -66,6 +69,10 @@ namespace Shp.WebApi
                         new List<string>()
                     }
                 });
+            });
+            services.AddDependencyResolvers(new ICoreModule[]
+            {
+                new CoreModule()
             });
         }
 

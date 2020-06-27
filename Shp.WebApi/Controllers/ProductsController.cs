@@ -71,7 +71,6 @@ namespace Shp.WebApi.Controllers
         }
 
         [HttpGet("getAll")]
-        [Authorize(Roles = "Product.List")]
         public IActionResult GetAllProducts()
         {
             var result = _productService.GetAll();

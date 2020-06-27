@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Shp.Core.CrossCutingConcerns.Caching;
 using Shp.Core.CrossCutingConcerns.Caching.Microsoft;
 using Shp.Core.Utilities.IoC;
@@ -11,6 +12,7 @@ namespace Shp.Core.DependencyResolvers
         {
             services.AddMemoryCache();
             services.AddSingleton<ICacheManager, MemoryCacheManager>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
     }
 }

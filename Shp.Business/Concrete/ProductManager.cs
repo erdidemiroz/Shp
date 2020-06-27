@@ -4,6 +4,7 @@ using Shp.Business.Constants;
 using Shp.Business.ValidationRules.FluentValidation;
 using Shp.Core.Aspects.Autofac.Authorization;
 using Shp.Core.Aspects.Autofac.Caching;
+using Shp.Core.Aspects.Autofac.Performance;
 using Shp.Core.Aspects.Autofac.Validation;
 using Shp.Core.CrossCutingConcerns.Validation;
 using Shp.Core.Utilities.Results;
@@ -63,8 +64,9 @@ namespace Shp.Business.Concrete
 
         public IDataResult<Product> Get(int productId) => new SuccessDataResult<Product>(_productDal.Get(x => x.Id == productId));
 
-        [AuthorizationAspect("Product.List")]
-        [CacheAspect]
+        //[AuthorizationAspect("Product.List")]
+        //[CacheAspect]
+        [PerformanceAspect(0)]
         public IDataResult<IEnumerable<Product>> GetAll() => new SuccessDataResult<IEnumerable<Product>>(_productDal.GetList());
 
         [CacheAspect]

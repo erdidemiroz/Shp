@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Shp.Core.Extensions;
 using Shp.Core.Utilities.IoC;
 
-namespace Shp.Core.CrossCutingConcerns.Caching.Microsoft
+namespace Shp.Core.CrossCuttingConcerns.Caching.Microsoft
 {
     public class MemoryCacheManager : ICacheManager
     {

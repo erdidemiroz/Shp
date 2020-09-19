@@ -1,4 +1,4 @@
-﻿namespace Shp.Core.CrossCutingConcerns.Caching
+﻿namespace Shp.Core.CrossCuttingConcerns.Caching
 {
     public interface ICacheManager
     {

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Shp.Core.Entities.Concrete;
 
 namespace Shp.Core.Utilities.Security.Jwt

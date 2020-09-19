@@ -4,9 +4,11 @@ using Shp.Business.Constants;
 using Shp.Business.ValidationRules.FluentValidation;
 using Shp.Core.Aspects.Autofac.Authorization;
 using Shp.Core.Aspects.Autofac.Caching;
+using Shp.Core.Aspects.Autofac.Logging;
 using Shp.Core.Aspects.Autofac.Performance;
 using Shp.Core.Aspects.Autofac.Validation;
-using Shp.Core.CrossCutingConcerns.Validation;
+using Shp.Core.CrossCuttingConcerns.Logging.Log4Net.Layouts.Loggers;
+using Shp.Core.CrossCuttingConcerns.Validation;
 using Shp.Core.Utilities.Results;
 using Shp.DataAccess.Abstract;
 using Shp.Entities.Concrete;
@@ -66,7 +68,8 @@ namespace Shp.Business.Concrete
 
         //[AuthorizationAspect("Product.List")]
         //[CacheAspect]
-        [PerformanceAspect(0)]
+        //[PerformanceAspect(0)]
+        [LogAspect(typeof(DatabaseLogger))]
         public IDataResult<IEnumerable<Product>> GetAll() => new SuccessDataResult<IEnumerable<Product>>(_productDal.GetList());
 
         [CacheAspect]

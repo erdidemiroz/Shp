@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Shp.Core.CrossCutingConcerns.Caching;
-using Shp.Core.CrossCutingConcerns.Caching.Microsoft;
+using Shp.Core.CrossCuttingConcerns.Caching;
+using Shp.Core.CrossCuttingConcerns.Caching.Microsoft;
 using Shp.Core.Utilities.IoC;
 
 namespace Shp.Core.DependencyResolvers

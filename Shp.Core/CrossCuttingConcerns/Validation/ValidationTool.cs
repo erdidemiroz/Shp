@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Shp.Core.CrossCutingConcerns.Validation
+namespace Shp.Core.CrossCuttingConcerns.Validation
 {
     public static class ValidationTool
     {

@@ -15,35 +15,34 @@ namespace Shp.Core.Utilities.Security.Jwt
     {
         public IConfiguration _configuration { get; }
         private TokenOptions _tokenOptions;
-        private DateTime _accessTokenExpiration;
 
         public JwtHelper(IConfiguration configuration)
         {
             _configuration = configuration;
             _tokenOptions = _configuration.GetSection("TokenOptions").Get<TokenOptions>();
-            _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
         }
 
 
         public AccessToken CreateToken(User user, IEnumerable<OperationClaims> operationClaims)
         {
+            var accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
             var securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);
             var signingCredentials = SigningCredentialsHelper.CreateSigningCredentials(securityKey);
-            var jwt = CreateJwtSecurityToken(_tokenOptions, user, signingCredentials, operationClaims);
+            var jwt = CreateJwtSecurityToken(_tokenOptions, user, signingCredentials, operationClaims, accessTokenExpiration);
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
             var token = jwtSecurityTokenHandler.WriteToken(jwt);
             return new AccessToken
             {
                 Token = token,
-                Expiration = _accessTokenExpiration
+                Expiration = accessTokenExpiration
             };
         }
 
-        public JwtSecurityToken CreateJwtSecurityToken(TokenOptions tokenOptions, User user, SigningCredentials signingCredentials, IEnumerable<OperationClaims> operationClaims) =>
+        private JwtSecurityToken CreateJwtSecurityToken(TokenOptions tokenOptions, User user, SigningCredentials signingCredentials, IEnumerable<OperationClaims> operationClaims, DateTime accessTokenExpiration) => 
             new JwtSecurityToken(
                 issuer: tokenOptions.Issuer,
                 audience: tokenOptions.Audience,
-                expires: _accessTokenExpiration,
+                expires: accessTokenExpiration,
                 notBefore: DateTime.Now,
                 claims: SetClaims(user, operationClaims),
                 signingCredentials: signingCredentials

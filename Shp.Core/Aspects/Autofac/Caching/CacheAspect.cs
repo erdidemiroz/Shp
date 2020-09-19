@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Castle.DynamicProxy;
 using Microsoft.Extensions.DependencyInjection;
-using Shp.Core.CrossCutingConcerns.Caching;
+using Shp.Core.CrossCuttingConcerns.Caching;
 using Shp.Core.Utilities.Intercepters;
 using Shp.Core.Utilities.IoC;
 

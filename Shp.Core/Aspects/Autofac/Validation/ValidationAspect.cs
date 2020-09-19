@@ -2,7 +2,7 @@
 using System.Linq;
 using Castle.DynamicProxy;
 using FluentValidation;
-using Shp.Core.CrossCutingConcerns.Validation;
+using Shp.Core.CrossCuttingConcerns.Validation;
 using Shp.Core.Utilities.Intercepters;
 using Shp.Core.Utilities.Messages;
 

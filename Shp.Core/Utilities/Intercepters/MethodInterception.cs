@@ -13,7 +13,7 @@ namespace Shp.Core.Utilities.Intercepters
         {
         }
 
-        protected virtual void OnException(IInvocation invocation)
+        protected virtual void OnException(IInvocation invocation, Exception e)
         {
         }
 
@@ -32,7 +32,7 @@ namespace Shp.Core.Utilities.Intercepters
             catch (Exception e)
             {
                 isSuccess = false;
-                OnException(invocation);
+                OnException(invocation, e);
                 throw;
             }
             finally

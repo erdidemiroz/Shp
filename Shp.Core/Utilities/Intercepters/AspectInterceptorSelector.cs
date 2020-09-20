@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Reflection;
 using Castle.DynamicProxy;
+using Shp.Core.Aspects.Autofac.Exception;
+using Shp.Core.CrossCuttingConcerns.Logging.Log4Net.Layouts.Loggers;
 
 namespace Shp.Core.Utilities.Intercepters
 {
@@ -12,6 +14,7 @@ namespace Shp.Core.Utilities.Intercepters
             var classAttributes = type.GetCustomAttributes<MethodInterceptionBaseAttribute>(true).ToList();
             var methodAttributes = type.GetMethod(method.Name).GetCustomAttributes<MethodInterceptionBaseAttribute>(true).ToList();
             classAttributes.AddRange(methodAttributes);
+            classAttributes.Add(new ExceptionLogAspect(typeof(FileLogger)));
             return classAttributes.OrderBy(x => x.Priority).ToArray();
         }
     }

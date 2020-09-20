@@ -65,7 +65,8 @@ namespace Shp.WebApi.Controllers
         public IActionResult GetAProduct(int productId)
         {
             var result = _productService.Get(productId);
-            if (result.Success) return Ok(result.Data);
+            if (result.Success) 
+                return Ok(result.Data);
 
             return BadRequest(result.Message);
         }
@@ -74,7 +75,8 @@ namespace Shp.WebApi.Controllers
         public IActionResult GetAllProducts()
         {
             var result = _productService.GetAll();
-            if (result.Success) return Ok(result.Data);
+            if (result.Success)
+                return Ok(result.Data);
 
             return BadRequest(result.Message);
         }
@@ -83,7 +85,8 @@ namespace Shp.WebApi.Controllers
         public IActionResult GetProductsByCategory(int categoryId)
         {
             var result = _productService.GetProductsByCategory(categoryId);
-            if (result.Success) return Ok(result.Data);
+            if (result.Success)
+                return Ok(result.Data);
 
             return BadRequest(result.Message);
         }

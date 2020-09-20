@@ -9,6 +9,7 @@ using Shp.Core.Aspects.Autofac.Performance;
 using Shp.Core.Aspects.Autofac.Validation;
 using Shp.Core.CrossCuttingConcerns.Logging.Log4Net.Layouts.Loggers;
 using Shp.Core.CrossCuttingConcerns.Validation;
+using Shp.Core.Utilities.Business;
 using Shp.Core.Utilities.Results;
 using Shp.DataAccess.Abstract;
 using Shp.Entities.Concrete;
@@ -34,10 +35,20 @@ namespace Shp.Business.Concrete
         [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
         {
-            ValidationTool.Validate(new ProductValidator(), product);
+            IResult result = BusinessRules.Run(CheckIfProductNameExists(product.ProductName));
+            if (result != null)
+                return result;
             _productDal.Add(product);
             return new SuccessResult(Messages<Product>.EntityInserted);
-        } 
+        }
+
+        private IResult CheckIfProductNameExists(string productProductName)
+        {
+            if (_productDal.Get(x => x.ProductName == productProductName) != null)
+                return new ErrorResult("Product name already exist.");
+
+            return new SuccessResult();
+        }
 
         #endregion
 

@@ -27,7 +27,7 @@ namespace Shp.Core.Aspects.Autofac.Authorization
                 if (roleClaims.Contains(role))
                     return;
             }
-            throw new Exception("Authorization denied.");
+            throw new System.Exception("Authorization denied.");
         }
     }
 }

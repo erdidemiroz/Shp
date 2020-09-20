@@ -15,7 +15,7 @@ namespace Shp.Core.Aspects.Autofac.Logging
         public LogAspect(Type loggerService)
         {
             if (!loggerService.BaseType.IsAssignableFrom(typeof(LoggerServiceBase)))
-                throw new Exception(AspectMessages.WrongLoggerType);
+                throw new System.Exception(AspectMessages.WrongLoggerType);
             
             _loggerServiceBase = (LoggerServiceBase)Activator.CreateInstance(loggerService);
         }
